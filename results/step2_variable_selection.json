@@ -7,6 +7,7 @@
     ],
     "causal_expert": [
       "VIX",
+      "Brent",
       "SP500",
       "Yield10Y",
       "IndProd_USA"
@@ -17,14 +18,13 @@
     ],
     "causal_union": [
       "VIX",
+      "Brent",
       "SP500",
       "Yield10Y",
-      "IndProd_USA",
-      "Brent"
+      "IndProd_USA"
     ],
     "causes": [
       "EIA_crude_stocks",
-      "Brent",
       "DXY",
       "ISM_PMI",
       "OPEC_proxy"
@@ -72,19 +72,15 @@
       "SP500"
     ],
     "causal_expert": [
-      "VIX",
       "SP500",
-      "DXY",
-      "IndProd_USA"
+      "DXY"
     ],
     "causal_pc": [
       "SP500"
     ],
     "causal_union": [
-      "VIX",
       "SP500",
-      "DXY",
-      "IndProd_USA"
+      "DXY"
     ],
     "causes": [
       "EIA_gas_stocks",
@@ -109,7 +105,7 @@
         "method": "PCMCI+_ParCorr",
         "tau_max": 4,
         "pc_alpha": 0.05,
-        "n_vars": 6,
+        "n_vars": 4,
         "n_obs": 4101,
         "parents": {}
       }
@@ -458,7 +454,12 @@
     "causal_expert": [
       "FedFunds",
       "Unemployment",
-      "HousingStarts"
+      "NFP",
+      "HousingStarts",
+      "M2",
+      "DXY",
+      "Yield10Y",
+      "SP500"
     ],
     "causal_pc": [
       "M2"
@@ -466,8 +467,12 @@
     "causal_union": [
       "FedFunds",
       "Unemployment",
+      "NFP",
       "HousingStarts",
-      "M2"
+      "M2",
+      "DXY",
+      "Yield10Y",
+      "SP500"
     ],
     "causes": [
       "PPI",
