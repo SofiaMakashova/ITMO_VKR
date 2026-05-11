@@ -61,8 +61,10 @@ def compute_metrics(y_true: np.ndarray, y_pred: np.ndarray,
     if len(y_t) == 0:
         return {"RMSE": np.nan, "MAE": np.nan, "MAPE": np.nan, "R2": np.nan}
     rmse = np.sqrt(mean_squared_error(y_t, y_p))
-    mae  = mean_absolute_error(y_t, y_p)
-    mape = np.mean(np.abs((y_t - y_p) / (np.abs(y_t) + 1e-9))) * 100
+    mae  = np.mean(np.abs(y_true - y_pred))
+    denominator = (np.abs(y_true) + np.abs(y_pred)) / 2
+    denominator = np.maximum(denominator, 1e-8)  # защита от нуля
+    mape = 100 * np.mean(np.abs(y_true - y_pred) / denominator)
     r2   = r2_score(y_t, y_p)
     metrics = {"RMSE": round(rmse, 6), "MAE": round(mae, 6),
                "MAPE": round(mape, 4), "R2": round(r2, 4)}

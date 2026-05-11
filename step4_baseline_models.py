@@ -185,84 +185,199 @@ def run_prophet(df: pd.DataFrame, target: str,
                 extra_regressors: List[str] = None,
                 horizon: int = 1) -> Dict:
     """
-    Facebook Prophet:
-      - Тренд + сезонность
-      - Опционально: дополнительные регрессоры (контрольные переменные)
-      - Без каузальной коррекции (baseline)
-    """
-    log.info(f"  [Prophet] {target}")
+    Facebook Prophet с корректной стратегией прогноза.
 
+    Стратегия прогноза (DIRECT, одно обучение):
+    ─────────────────────────────────────────────
+    Обучаем Prophet ОДИН РАЗ на train (80%), затем строим forecast
+    на весь тест сразу. Из forecast берём каждый h-й шаг вперёд
+    относительно каждой тестовой даты, используя уже построенные
+    предсказания.
+
+    Почему не walk-forward:
+      Prophet.fit() занимает ~1–2 с на вызов. При n=4000 и test=800 точек
+      walk-forward потребует 800–1600 секунд. Для Prophet это неприемлемо.
+      Кроме того, Prophet не поддерживает инкрементальное дообучение.
+
+    Стратегия DIRECT для горизонта h:
+      y_pred[t] = forecast на дату (test_date[t] + h - 1 шаг)
+                = forecast["yhat"] для индекса (t + h - 1) в тестовой части.
+      y_true[t] = series на дату (test_date[t] + h - 1).
+
+    Таким образом для h=1: предсказываем следующий день.
+    Для h=5: сдвигаем прогноз на 5 шагов, RMSE будет выше, чем при h=1.
+
+    Параметры
+    ----------
+    df               : датафрейм с временным индексом
+    target           : имя целевого ряда
+    extra_regressors : список имён дополнительных регрессоров (до 3)
+    horizon          : горизонт прогноза в шагах (1 / 5 / 21 для дневных)
+    """
     try:
         from prophet import Prophet
     except ImportError:
         try:
             from fbprophet import Prophet
         except ImportError:
-            log.warning("    prophet не установлен: pip install prophet")
+            log.warning("Prophet не установлен: pip install prophet")
             return {"method": "Prophet_SKIPPED", "metrics": {}}
 
+    log.info(f"  [Prophet] {target} | horizon={horizon}")
+
     series = df[target].dropna()
-    n = len(series)
-    cut = int(n * TRAIN_RATIO)
+    n      = len(series)
+    cut    = int(n * TRAIN_RATIO)
 
-    # Частота для Prophet
-    freq_map = {"D": "D", "B": "B", "ME": "MS", "M": "MS"}
-    freq = freq_map.get(pd.infer_freq(series.index) or "D", "D")
+    # Нужно минимум (cut + horizon) точек
+    if n < 50 or cut < 20 or n - cut <= horizon:
+        log.warning(f"    Prophet {target}: недостаточно данных (n={n})")
+        return {"method": "Prophet_SKIPPED", "metrics": {}}
 
-    prophet_df = pd.DataFrame({
-        "ds": series.index,
-        "y":  series.values
-    }).reset_index(drop=True)
+    # ── Определяем частоту по типу индекса ───────────────────────────────────
+    # Prophet принимает строковые freq: "D" (calendar), "B" (business),
+    # "MS" (month start). Пытаемся вывести из индекса.
+    try:
+        inferred = pd.infer_freq(series.index)
+        if inferred in ("B", "C"):
+            freq = "B"
+        elif inferred in ("MS", "ME", "M", "BMS"):
+            freq = "MS"
+        else:
+            freq = "D"
+    except Exception:
+        freq = "D"
 
-    # Дополнительные регрессоры
+    # ── Формируем train DataFrame для Prophet ────────────────────────────────
+    train_series = series.iloc[:cut]
+    train_df     = pd.DataFrame({
+        "ds": train_series.index,
+        "y":  train_series.values,
+    })
+
+    regs_available: List[str] = []
     if extra_regressors:
-        for reg in extra_regressors[:3]:  # не более 3
+        for reg in extra_regressors[:3]:
             if reg in df.columns:
-                prophet_df[reg] = df[reg].reindex(series.index).ffill().values
+                reg_vals = df[reg].reindex(train_series.index).ffill().bfill()
+                if reg_vals.notna().sum() > 10:
+                    train_df[reg] = reg_vals.values
+                    regs_available.append(reg)
 
-    train_df = prophet_df.iloc[:cut]
-    test_df  = prophet_df.iloc[cut:]
+    # ── Обучение Prophet (один раз) ───────────────────────────────────────────
+    m = Prophet(
+        daily_seasonality=False,     # выключаем для рядов не с часовой частотой
+        weekly_seasonality=(freq in ("D", "B")),
+        yearly_seasonality=True,
+        interval_width=0.95,
+        seasonality_mode="additive",
+    )
+    for reg in regs_available:
+        m.add_regressor(reg)
 
     try:
-        m = Prophet(
-            seasonality_mode="multiplicative" if df[target].min() > 0 else "additive",
-            daily_seasonality=False,
-            weekly_seasonality=(freq in ["D", "B"]),
-            yearly_seasonality=True,
-            interval_width=0.95,
-        )
-        if extra_regressors:
-            for reg in extra_regressors[:3]:
-                if reg in prophet_df.columns:
-                    m.add_regressor(reg)
-
         m.fit(train_df)
-
-        # Прогноз
-        future = m.make_future_dataframe(
-            periods=len(test_df), freq=freq, include_history=False)
-        if extra_regressors:
-            for reg in extra_regressors[:3]:
-                if reg in prophet_df.columns:
-                    future[reg] = test_df[reg].values[:len(future)]
-
-        forecast = m.predict(future)
-        y_pred = forecast["yhat"].values[:len(test_df)]
-        y_true = test_df["y"].values[:len(y_pred)]
-
-        metrics = compute_metrics(y_true, y_pred, "Prophet")
-        return {
-            "method":  "Prophet",
-            "metrics": metrics,
-            "predictions": dict(zip(
-                test_df["ds"].dt.strftime("%Y-%m-%d").tolist()[:len(y_pred)],
-                y_pred.tolist()
-            )),
-        }
     except Exception as e:
-        log.error(f"    Prophet error: {e}")
+        log.error(f"    Prophet fit error: {e}")
         return {"method": "Prophet_FAILED", "metrics": {}}
 
+    # ── Строим forecast на весь тест + horizon шагов ─────────────────────────
+    # Prophet генерирует n_future дат ПОСЛЕ последней тренировочной даты.
+    # Нам нужно покрыть весь тест (n - cut точек) плюс ещё (horizon - 1)
+    # дополнительных шагов чтобы каждая тестовая точка имела прогноз.
+    n_future = (n - cut) + (horizon - 1)
+
+    future = m.make_future_dataframe(
+        periods=n_future,
+        freq=freq,
+        include_history=False,   # только будущее, без train
+    )
+
+    # Заполняем регрессоры для future: используем реальные значения из df
+    # там где они доступны, иначе последнее известное (ffill).
+    if regs_available:
+        for reg in regs_available:
+            reg_future = df[reg].reindex(future["ds"]).ffill().bfill()
+            # Если дата не найдена (выходной, нет данных) — берём последнее
+            last_known = df[reg].iloc[cut - 1] if len(df[reg]) >= cut else df[reg].iloc[-1]
+            future[reg] = reg_future.fillna(last_known).values
+
+    try:
+        forecast = m.predict(future)
+    except Exception as e:
+        log.error(f"    Prophet predict error: {e}")
+        return {"method": "Prophet_FAILED", "metrics": {}}
+
+    # ── DIRECT: берём прогноз со сдвигом на (horizon - 1) ────────────────────
+    # forecast содержит n_future строк.
+    # forecast.iloc[i] = прогноз на (train_end + i + 1) шаг.
+    # Тестовая точка t (t=0..n-cut-1) соответствует series.iloc[cut + t].
+    # Прогноз для тестовой точки t при горизонте h = forecast.iloc[t + h - 1].
+    # Истинное значение = series.iloc[cut + t + h - 1].
+    #
+    # Пример: h=5, t=0 → pred = forecast.iloc[4], actual = series.iloc[cut+4].
+    # Это означает: зная данные до train_end, предсказываем через 5 шагов.
+
+    y_pred_list: List[float] = []
+    y_true_list: List[float] = []
+    dates_list:  List        = []
+
+    n_test = n - cut
+    for t in range(n_test - horizon + 1):
+        fc_idx = t + horizon - 1       # индекс в forecast
+        sr_idx = cut + t + horizon - 1 # индекс в series (истинное значение)
+
+        if fc_idx >= len(forecast) or sr_idx >= n:
+            break
+
+        pred   = float(forecast["yhat"].iloc[fc_idx])
+        actual = float(series.iloc[sr_idx])
+
+        if np.isnan(pred) or np.isinf(pred):
+            continue
+
+        y_pred_list.append(pred)
+        y_true_list.append(actual)
+        dates_list.append(series.index[sr_idx])
+
+    if len(y_pred_list) == 0:
+        log.error(f"    Prophet {target}: нет валидных прогнозов")
+        return {"method": "Prophet_FAILED", "metrics": {}}
+
+    # ── Метрики ───────────────────────────────────────────────────────────────
+    y_true_arr = np.array(y_true_list)
+    y_pred_arr = np.array(y_pred_list)
+
+    rmse_val = float(np.sqrt(np.mean((y_true_arr - y_pred_arr) ** 2)))
+    mae_val  = float(np.mean(np.abs(y_true_arr - y_pred_arr)))
+
+    # sMAPE: симметричная MAPE, устойчива к нулям
+    denom    = np.maximum((np.abs(y_true_arr) + np.abs(y_pred_arr)) / 2, 1e-9)
+    smape    = float(100 * np.mean(np.abs(y_true_arr - y_pred_arr) / denom))
+
+    ss_res   = np.sum((y_true_arr - y_pred_arr) ** 2)
+    ss_tot   = np.sum((y_true_arr - np.mean(y_true_arr)) ** 2)
+    r2_val   = float(1 - ss_res / ss_tot) if ss_tot > 0 else 0.0
+
+    metrics = {
+        "RMSE":  round(rmse_val, 6),
+        "MAE":   round(mae_val,  6),
+        "sMAPE": round(smape,    4),   # явно sMAPE, не MAPE
+        "R2":    round(r2_val,   4),
+    }
+
+    log.info(f"    Prophet(h={horizon}): RMSE={rmse_val:.4f}  MAE={mae_val:.4f}  "
+             f"sMAPE={smape:.2f}%  R²={r2_val:.4f}  (n={len(y_pred_list)})")
+
+    return {
+        "method":  f"Prophet_h{horizon}",
+        "metrics": metrics,
+        "predictions": dict(zip(
+            [d.strftime("%Y-%m-%d") for d in dates_list],
+            [round(float(x), 6) for x in y_pred_list],
+        )),
+        "n_predictions": len(y_pred_list),
+    }
 
 # ══════════════════════════════════════════════════════════════════════════════
 # BASELINE 3: Random Forest (без каузальной коррекции)

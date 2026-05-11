@@ -1,0 +1,1166 @@
+{
+  "aggregated": {
+    "SCM": {
+      "method_type": "Causal",
+      "mean_rmse_shock": 1135.741858,
+      "mean_rmse_calm": 1797.69726,
+      "mean_ratio": 1.2472,
+      "n_observations": 24
+    },
+    "DML": {
+      "method_type": "Causal",
+      "mean_rmse_shock": 17247.844749,
+      "mean_rmse_calm": 6477.407105,
+      "mean_ratio": 53.7284,
+      "n_observations": 23
+    },
+    "VAR_Granger": {
+      "method_type": "Causal",
+      "mean_rmse_shock": 2048.918179,
+      "mean_rmse_calm": 1835.412625,
+      "mean_ratio": 1.6942,
+      "n_observations": 24
+    },
+    "IV_2SLS": {
+      "method_type": "Causal",
+      "mean_rmse_shock": 436.600445,
+      "mean_rmse_calm": 415.143144,
+      "mean_ratio": 1.7942,
+      "n_observations": 23
+    },
+    "ARIMA": {
+      "method_type": "Baseline",
+      "mean_rmse_shock": 1529.921872,
+      "mean_rmse_calm": 1807.367142,
+      "mean_ratio": 1.1987,
+      "n_observations": 24
+    },
+    "Prophet": {
+      "method_type": "Baseline",
+      "mean_rmse_shock": 4392.928038,
+      "mean_rmse_calm": 6174.438648,
+      "mean_ratio": 1.1039,
+      "n_observations": 22
+    },
+    "RandomForest": {
+      "method_type": "Baseline",
+      "mean_rmse_shock": 995.60406,
+      "mean_rmse_calm": 777.135439,
+      "mean_ratio": 1.7459,
+      "n_observations": 24
+    },
+    "LSTM": {
+      "method_type": "Baseline",
+      "mean_rmse_shock": 3069.680274,
+      "mean_rmse_calm": 3080.494456,
+      "mean_ratio": 1.6205,
+      "n_observations": 24
+    }
+  },
+  "per_event": [
+    {
+      "event_id": "fed_rate_mar22",
+      "target": "EURUSD",
+      "methods": {
+        "SCM": {
+          "rmse_shock": 0.014469,
+          "rmse_calm": 0.008961,
+          "ratio": 1.6147
+        },
+        "DML": {
+          "rmse_shock": 3.647861,
+          "rmse_calm": 1.516273,
+          "ratio": 2.4058
+        },
+        "VAR_Granger": {
+          "rmse_shock": 0.006227,
+          "rmse_calm": 0.026545,
+          "ratio": 0.2346
+        },
+        "IV_2SLS": {
+          "rmse_shock": 0.005961,
+          "rmse_calm": 0.003398,
+          "ratio": 1.7543
+        },
+        "ARIMA": {
+          "rmse_shock": 0.008982,
+          "rmse_calm": 0.019333,
+          "ratio": 0.4646
+        },
+        "Prophet": {
+          "rmse_shock": 0.00552,
+          "rmse_calm": 0.067619,
+          "ratio": 0.0816
+        },
+        "RandomForest": {
+          "rmse_shock": 0.004978,
+          "rmse_calm": 0.006055,
+          "ratio": 0.8221
+        },
+        "LSTM": {
+          "rmse_shock": 0.03177,
+          "rmse_calm": 0.02113,
+          "ratio": 1.5035
+        }
+      }
+    },
+    {
+      "event_id": "fed_rate_mar22",
+      "target": "USDJPY",
+      "methods": {
+        "SCM": {
+          "rmse_shock": 3.162489,
+          "rmse_calm": 1.520209,
+          "ratio": 2.0803
+        },
+        "DML": {
+          "rmse_shock": 398.616625,
+          "rmse_calm": 463.318222,
+          "ratio": 0.8604
+        },
+        "VAR_Granger": {
+          "rmse_shock": 3.8617,
+          "rmse_calm": 2.327172,
+          "ratio": 1.6594
+        },
+        "IV_2SLS": {
+          "rmse_shock": 1.145609,
+          "rmse_calm": 0.245079,
+          "ratio": 4.6744
+        },
+        "ARIMA": {
+          "rmse_shock": 3.085531,
+          "rmse_calm": 3.264683,
+          "ratio": 0.9451
+        },
+        "Prophet": {
+          "rmse_shock": 4.591628,
+          "rmse_calm": 32.162456,
+          "ratio": 0.1428
+        },
+        "RandomForest": {
+          "rmse_shock": 3.737928,
+          "rmse_calm": 0.405506,
+          "ratio": 9.2179
+        },
+        "LSTM": {
+          "rmse_shock": 5.08225,
+          "rmse_calm": 1.975171,
+          "ratio": 2.5731
+        }
+      }
+    },
+    {
+      "event_id": "fed_rate_mar22",
+      "target": "Gold",
+      "methods": {
+        "SCM": {
+          "rmse_shock": 16.850608,
+          "rmse_calm": 60.123898,
+          "ratio": 0.2803
+        },
+        "DML": {
+          "rmse_shock": 14.980893,
+          "rmse_calm": 626.558107,
+          "ratio": 0.0239
+        },
+        "VAR_Granger": {
+          "rmse_shock": 34.461679,
+          "rmse_calm": 28.281695,
+          "ratio": 1.2185
+        },
+        "IV_2SLS": {
+          "rmse_shock": 23.769004,
+          "rmse_calm": 13.191347,
+          "ratio": 1.8019
+        },
+        "ARIMA": {
+          "rmse_shock": 16.20303,
+          "rmse_calm": 27.073188,
+          "ratio": 0.5985
+        },
+        "Prophet": {
+          "rmse_shock": 294.785114,
+          "rmse_calm": null,
+          "ratio": null
+        },
+        "RandomForest": {
+          "rmse_shock": 21.926815,
+          "rmse_calm": 21.639393,
+          "ratio": 1.0133
+        },
+        "LSTM": {
+          "rmse_shock": 104.282717,
+          "rmse_calm": 60.90968,
+          "ratio": 1.7121
+        }
+      }
+    },
+    {
+      "event_id": "fed_rate_mar22",
+      "target": "BTC",
+      "methods": {
+        "SCM": {
+          "rmse_shock": 2635.641436,
+          "rmse_calm": 10894.544068,
+          "ratio": 0.2419
+        },
+        "DML": {
+          "rmse_shock": 3822.140774,
+          "rmse_calm": 12774.281832,
+          "ratio": 0.2992
+        },
+        "VAR_Granger": {
+          "rmse_shock": 8000.087379,
+          "rmse_calm": 5416.368496,
+          "ratio": 1.477
+        },
+        "IV_2SLS": {
+          "rmse_shock": 1544.837909,
+          "rmse_calm": 1576.216973,
+          "ratio": 0.9801
+        },
+        "ARIMA": {
+          "rmse_shock": 4925.723618,
+          "rmse_calm": 10656.273777,
+          "ratio": 0.4622
+        },
+        "Prophet": {
+          "rmse_shock": 16375.751496,
+          "rmse_calm": 17932.30221,
+          "ratio": 0.9132
+        },
+        "RandomForest": {
+          "rmse_shock": 2572.557062,
+          "rmse_calm": 2652.748831,
+          "ratio": 0.9698
+        },
+        "LSTM": {
+          "rmse_shock": 6622.753742,
+          "rmse_calm": 9315.573296,
+          "ratio": 0.7109
+        }
+      }
+    },
+    {
+      "event_id": "fed_rate_may22",
+      "target": "EURUSD",
+      "methods": {
+        "SCM": {
+          "rmse_shock": 0.0077,
+          "rmse_calm": 0.012607,
+          "ratio": 0.6108
+        },
+        "DML": {
+          "rmse_shock": 0.01129,
+          "rmse_calm": 11.178257,
+          "ratio": 0.001
+        },
+        "VAR_Granger": {
+          "rmse_shock": 0.007069,
+          "rmse_calm": 0.033401,
+          "ratio": 0.2116
+        },
+        "IV_2SLS": {
+          "rmse_shock": 0.007043,
+          "rmse_calm": 0.00433,
+          "ratio": 1.6266
+        },
+        "ARIMA": {
+          "rmse_shock": 0.007253,
+          "rmse_calm": 0.012177,
+          "ratio": 0.5956
+        },
+        "Prophet": {
+          "rmse_shock": 0.030765,
+          "rmse_calm": 0.031007,
+          "ratio": 0.9922
+        },
+        "RandomForest": {
+          "rmse_shock": 0.008179,
+          "rmse_calm": 0.014194,
+          "ratio": 0.5762
+        },
+        "LSTM": {
+          "rmse_shock": 0.025207,
+          "rmse_calm": 0.023069,
+          "ratio": 1.0927
+        }
+      }
+    },
+    {
+      "event_id": "fed_rate_may22",
+      "target": "USDJPY",
+      "methods": {
+        "SCM": {
+          "rmse_shock": 0.668543,
+          "rmse_calm": 2.670287,
+          "ratio": 0.2504
+        },
+        "DML": {
+          "rmse_shock": 0.657985,
+          "rmse_calm": 110.56523,
+          "ratio": 0.006
+        },
+        "VAR_Granger": {
+          "rmse_shock": 3.215856,
+          "rmse_calm": 2.722037,
+          "ratio": 1.1814
+        },
+        "IV_2SLS": {
+          "rmse_shock": 0.561146,
+          "rmse_calm": 0.311583,
+          "ratio": 1.801
+        },
+        "ARIMA": {
+          "rmse_shock": 2.505587,
+          "rmse_calm": 2.729614,
+          "ratio": 0.9179
+        },
+        "Prophet": {
+          "rmse_shock": 12.835543,
+          "rmse_calm": 23.224562,
+          "ratio": 0.5527
+        },
+        "RandomForest": {
+          "rmse_shock": 0.577254,
+          "rmse_calm": 1.866698,
+          "ratio": 0.3092
+        },
+        "LSTM": {
+          "rmse_shock": 5.506957,
+          "rmse_calm": 2.644835,
+          "ratio": 2.0822
+        }
+      }
+    },
+    {
+      "event_id": "fed_rate_may22",
+      "target": "Gold",
+      "methods": {
+        "SCM": {
+          "rmse_shock": 16.399806,
+          "rmse_calm": 16.599998,
+          "ratio": 0.9879
+        },
+        "DML": {
+          "rmse_shock": 329.753292,
+          "rmse_calm": 8871.445963,
+          "ratio": 0.0372
+        },
+        "VAR_Granger": {
+          "rmse_shock": 24.726599,
+          "rmse_calm": 33.845452,
+          "ratio": 0.7306
+        },
+        "IV_2SLS": {
+          "rmse_shock": 22.138391,
+          "rmse_calm": 13.592772,
+          "ratio": 1.6287
+        },
+        "ARIMA": {
+          "rmse_shock": 37.695459,
+          "rmse_calm": 35.120719,
+          "ratio": 1.0733
+        },
+        "Prophet": {
+          "rmse_shock": 88.1759,
+          "rmse_calm": 212.075956,
+          "ratio": 0.4158
+        },
+        "RandomForest": {
+          "rmse_shock": 12.967514,
+          "rmse_calm": 25.603689,
+          "ratio": 0.5065
+        },
+        "LSTM": {
+          "rmse_shock": 28.992817,
+          "rmse_calm": 89.202026,
+          "ratio": 0.325
+        }
+      }
+    },
+    {
+      "event_id": "fed_rate_may22",
+      "target": "BTC",
+      "methods": {
+        "SCM": {
+          "rmse_shock": 6286.765219,
+          "rmse_calm": 9875.973316,
+          "ratio": 0.6366
+        },
+        "DML": {
+          "rmse_shock": 7663.408744,
+          "rmse_calm": 20060.590687,
+          "ratio": 0.382
+        },
+        "VAR_Granger": {
+          "rmse_shock": 7968.148168,
+          "rmse_calm": 11506.805063,
+          "ratio": 0.6925
+        },
+        "IV_2SLS": {
+          "rmse_shock": 1661.875818,
+          "rmse_calm": 1888.346501,
+          "ratio": 0.8801
+        },
+        "ARIMA": {
+          "rmse_shock": 6627.49279,
+          "rmse_calm": 8974.962058,
+          "ratio": 0.7384
+        },
+        "Prophet": {
+          "rmse_shock": 9005.83562,
+          "rmse_calm": 54155.616286,
+          "ratio": 0.1663
+        },
+        "RandomForest": {
+          "rmse_shock": 6721.234671,
+          "rmse_calm": 2506.338905,
+          "ratio": 2.6817
+        },
+        "LSTM": {
+          "rmse_shock": 8476.873869,
+          "rmse_calm": 18295.709673,
+          "ratio": 0.4633
+        }
+      }
+    },
+    {
+      "event_id": "fed_rate_jun22",
+      "target": "EURUSD",
+      "methods": {
+        "SCM": {
+          "rmse_shock": 0.00372,
+          "rmse_calm": 0.023753,
+          "ratio": 0.1566
+        },
+        "DML": {
+          "rmse_shock": 0.467198,
+          "rmse_calm": 0.015223,
+          "ratio": 30.6903
+        },
+        "VAR_Granger": {
+          "rmse_shock": 0.030698,
+          "rmse_calm": 0.021413,
+          "ratio": 1.4336
+        },
+        "IV_2SLS": {
+          "rmse_shock": 0.004677,
+          "rmse_calm": 0.0123,
+          "ratio": 0.3802
+        },
+        "ARIMA": {
+          "rmse_shock": 0.011508,
+          "rmse_calm": 0.022668,
+          "ratio": 0.5077
+        },
+        "Prophet": {
+          "rmse_shock": 0.041804,
+          "rmse_calm": 0.188567,
+          "ratio": 0.2217
+        },
+        "RandomForest": {
+          "rmse_shock": 0.004253,
+          "rmse_calm": 0.028556,
+          "ratio": 0.1489
+        },
+        "LSTM": {
+          "rmse_shock": 0.024042,
+          "rmse_calm": 0.015194,
+          "ratio": 1.5823
+        }
+      }
+    },
+    {
+      "event_id": "fed_rate_jun22",
+      "target": "USDJPY",
+      "methods": {
+        "SCM": {
+          "rmse_shock": 1.570453,
+          "rmse_calm": 3.222631,
+          "ratio": 0.4873
+        },
+        "DML": {
+          "rmse_shock": 781.475808,
+          "rmse_calm": 2.750905,
+          "ratio": 284.0795
+        },
+        "VAR_Granger": {
+          "rmse_shock": 1.065107,
+          "rmse_calm": 3.025504,
+          "ratio": 0.352
+        },
+        "IV_2SLS": {
+          "rmse_shock": 1.160952,
+          "rmse_calm": 0.500566,
+          "ratio": 2.3193
+        },
+        "ARIMA": {
+          "rmse_shock": 0.907388,
+          "rmse_calm": 2.905806,
+          "ratio": 0.3123
+        },
+        "Prophet": {
+          "rmse_shock": 27.491688,
+          "rmse_calm": 19.43404,
+          "ratio": 1.4146
+        },
+        "RandomForest": {
+          "rmse_shock": 3.827445,
+          "rmse_calm": 2.753024,
+          "ratio": 1.3903
+        },
+        "LSTM": {
+          "rmse_shock": 9.668538,
+          "rmse_calm": 5.530691,
+          "ratio": 1.7482
+        }
+      }
+    },
+    {
+      "event_id": "fed_rate_jun22",
+      "target": "Gold",
+      "methods": {
+        "SCM": {
+          "rmse_shock": 11.777685,
+          "rmse_calm": 50.706926,
+          "ratio": 0.2323
+        },
+        "DML": {
+          "rmse_shock": 15.77736,
+          "rmse_calm": 13791.880188,
+          "ratio": 0.0011
+        },
+        "VAR_Granger": {
+          "rmse_shock": 19.866998,
+          "rmse_calm": 38.675557,
+          "ratio": 0.5137
+        },
+        "IV_2SLS": {
+          "rmse_shock": 22.390942,
+          "rmse_calm": 13.392195,
+          "ratio": 1.6719
+        },
+        "ARIMA": {
+          "rmse_shock": 20.083265,
+          "rmse_calm": 42.612169,
+          "ratio": 0.4713
+        },
+        "Prophet": {
+          "rmse_shock": 146.04706,
+          "rmse_calm": 459.78246,
+          "ratio": 0.3176
+        },
+        "RandomForest": {
+          "rmse_shock": 11.153923,
+          "rmse_calm": 24.040436,
+          "ratio": 0.464
+        },
+        "LSTM": {
+          "rmse_shock": 57.940103,
+          "rmse_calm": 66.333923,
+          "ratio": 0.8735
+        }
+      }
+    },
+    {
+      "event_id": "fed_rate_jun22",
+      "target": "BTC",
+      "methods": {
+        "SCM": {
+          "rmse_shock": 3190.310857,
+          "rmse_calm": 9103.480978,
+          "ratio": 0.3504
+        },
+        "DML": {
+          "rmse_shock": 8032.144812,
+          "rmse_calm": 6905.068158,
+          "ratio": 1.1632
+        },
+        "VAR_Granger": {
+          "rmse_shock": 1484.05501,
+          "rmse_calm": 13539.825146,
+          "ratio": 0.1096
+        },
+        "IV_2SLS": {
+          "rmse_shock": 1172.35435,
+          "rmse_calm": 1904.223872,
+          "ratio": 0.6157
+        },
+        "ARIMA": {
+          "rmse_shock": 1703.36496,
+          "rmse_calm": 9547.960551,
+          "ratio": 0.1784
+        },
+        "Prophet": {
+          "rmse_shock": 5617.023623,
+          "rmse_calm": 18338.289784,
+          "ratio": 0.3063
+        },
+        "RandomForest": {
+          "rmse_shock": 4806.226168,
+          "rmse_calm": 5050.493661,
+          "ratio": 0.9516
+        },
+        "LSTM": {
+          "rmse_shock": 10784.225137,
+          "rmse_calm": 19505.880646,
+          "ratio": 0.5529
+        }
+      }
+    },
+    {
+      "event_id": "russia_ukraine_feb22",
+      "target": "WTI_oil",
+      "methods": {
+        "SCM": {
+          "rmse_shock": 1.757913,
+          "rmse_calm": 1.227772,
+          "ratio": 1.4318
+        },
+        "DML": {
+          "rmse_shock": 15.232484,
+          "rmse_calm": 1.563614,
+          "ratio": 9.7418
+        },
+        "VAR_Granger": {
+          "rmse_shock": 13.209468,
+          "rmse_calm": 2.763042,
+          "ratio": 4.7808
+        },
+        "IV_2SLS": {
+          "rmse_shock": 6.470634,
+          "rmse_calm": 1.430584,
+          "ratio": 4.5231
+        },
+        "ARIMA": {
+          "rmse_shock": 15.924446,
+          "rmse_calm": 9.772743,
+          "ratio": 1.6295
+        },
+        "Prophet": {
+          "rmse_shock": 6.303226,
+          "rmse_calm": 31.219339,
+          "ratio": 0.2019
+        },
+        "RandomForest": {
+          "rmse_shock": 15.652305,
+          "rmse_calm": 1.877736,
+          "ratio": 8.3357
+        },
+        "LSTM": {
+          "rmse_shock": 20.039616,
+          "rmse_calm": 15.8522,
+          "ratio": 1.2642
+        }
+      }
+    },
+    {
+      "event_id": "russia_ukraine_feb22",
+      "target": "NatGas",
+      "methods": {
+        "SCM": {
+          "rmse_shock": 0.158586,
+          "rmse_calm": 0.603941,
+          "ratio": 0.2626
+        },
+        "DML": {
+          "rmse_shock": 0.649866,
+          "rmse_calm": 0.717588,
+          "ratio": 0.9056
+        },
+        "VAR_Granger": {
+          "rmse_shock": 0.308116,
+          "rmse_calm": 0.74537,
+          "ratio": 0.4134
+        },
+        "IV_2SLS": {
+          "rmse_shock": 0.221973,
+          "rmse_calm": 0.096986,
+          "ratio": 2.2887
+        },
+        "ARIMA": {
+          "rmse_shock": 0.191337,
+          "rmse_calm": 0.751777,
+          "ratio": 0.2545
+        },
+        "Prophet": {
+          "rmse_shock": 3.114803,
+          "rmse_calm": 0.492174,
+          "ratio": 6.3287
+        },
+        "RandomForest": {
+          "rmse_shock": 0.229376,
+          "rmse_calm": 0.718691,
+          "ratio": 0.3192
+        },
+        "LSTM": {
+          "rmse_shock": 0.402349,
+          "rmse_calm": 1.023405,
+          "ratio": 0.3931
+        }
+      }
+    },
+    {
+      "event_id": "russia_ukraine_feb22",
+      "target": "Gold",
+      "methods": {
+        "SCM": {
+          "rmse_shock": 42.632493,
+          "rmse_calm": 36.844368,
+          "ratio": 1.1571
+        },
+        "DML": {
+          "rmse_shock": 45835.402533,
+          "rmse_calm": 8768.920181,
+          "ratio": 5.227
+        },
+        "VAR_Granger": {
+          "rmse_shock": 106.19951,
+          "rmse_calm": 54.685944,
+          "ratio": 1.942
+        },
+        "IV_2SLS": {
+          "rmse_shock": 31.423696,
+          "rmse_calm": 17.56955,
+          "ratio": 1.7885
+        },
+        "ARIMA": {
+          "rmse_shock": 59.983068,
+          "rmse_calm": 65.300474,
+          "ratio": 0.9186
+        },
+        "Prophet": {
+          "rmse_shock": 95.232556,
+          "rmse_calm": 1084.340254,
+          "ratio": 0.0878
+        },
+        "RandomForest": {
+          "rmse_shock": 64.091299,
+          "rmse_calm": 18.711968,
+          "ratio": 3.4252
+        },
+        "LSTM": {
+          "rmse_shock": 142.416313,
+          "rmse_calm": 27.147807,
+          "ratio": 5.246
+        }
+      }
+    },
+    {
+      "event_id": "russia_ukraine_feb22",
+      "target": "BTC",
+      "methods": {
+        "SCM": {
+          "rmse_shock": 3644.702813,
+          "rmse_calm": 6702.370513,
+          "ratio": 0.5438
+        },
+        "DML": {
+          "rmse_shock": 1840.334772,
+          "rmse_calm": 4765.204475,
+          "ratio": 0.3862
+        },
+        "VAR_Granger": {
+          "rmse_shock": 8318.150921,
+          "rmse_calm": 6984.137816,
+          "ratio": 1.191
+        },
+        "IV_2SLS": {
+          "rmse_shock": 2158.42047,
+          "rmse_calm": 2218.958546,
+          "ratio": 0.9727
+        },
+        "ARIMA": {
+          "rmse_shock": 3734.880695,
+          "rmse_calm": 6715.508227,
+          "ratio": 0.5562
+        },
+        "Prophet": {
+          "rmse_shock": 26433.807294,
+          "rmse_calm": 17666.534449,
+          "ratio": 1.4963
+        },
+        "RandomForest": {
+          "rmse_shock": 2108.571878,
+          "rmse_calm": 2213.251879,
+          "ratio": 0.9527
+        },
+        "LSTM": {
+          "rmse_shock": 7007.296084,
+          "rmse_calm": 6823.950713,
+          "ratio": 1.0269
+        }
+      }
+    },
+    {
+      "event_id": "opec_cut_oct22",
+      "target": "WTI_oil",
+      "methods": {
+        "SCM": {
+          "rmse_shock": 2.036159,
+          "rmse_calm": 3.091763,
+          "ratio": 0.6586
+        },
+        "DML": {
+          "rmse_shock": 1.314539,
+          "rmse_calm": 11.878904,
+          "ratio": 0.1107
+        },
+        "VAR_Granger": {
+          "rmse_shock": 2.425477,
+          "rmse_calm": 12.640361,
+          "ratio": 0.1919
+        },
+        "IV_2SLS": {
+          "rmse_shock": 3.00756,
+          "rmse_calm": 4.67094,
+          "ratio": 0.6439
+        },
+        "ARIMA": {
+          "rmse_shock": 2.566848,
+          "rmse_calm": 15.075593,
+          "ratio": 0.1703
+        },
+        "Prophet": {
+          "rmse_shock": 156.664908,
+          "rmse_calm": null,
+          "ratio": null
+        },
+        "RandomForest": {
+          "rmse_shock": 1.317191,
+          "rmse_calm": 12.921345,
+          "ratio": 0.1019
+        },
+        "LSTM": {
+          "rmse_shock": 4.247683,
+          "rmse_calm": 19.449879,
+          "ratio": 0.2184
+        }
+      }
+    },
+    {
+      "event_id": "svb_collapse_mar23",
+      "target": "Gold",
+      "methods": {
+        "SCM": {
+          "rmse_shock": 50.467074,
+          "rmse_calm": 31.565674,
+          "ratio": 1.5988
+        },
+        "DML": {
+          "rmse_shock": 615.615886,
+          "rmse_calm": 44611.027835,
+          "ratio": 0.0138
+        },
+        "VAR_Granger": {
+          "rmse_shock": 143.556558,
+          "rmse_calm": 69.433086,
+          "ratio": 2.0676
+        },
+        "IV_2SLS": {
+          "rmse_shock": 28.663376,
+          "rmse_calm": 18.704007,
+          "ratio": 1.5325
+        },
+        "ARIMA": {
+          "rmse_shock": 116.590273,
+          "rmse_calm": 87.966202,
+          "ratio": 1.3254
+        },
+        "Prophet": {
+          "rmse_shock": 336.475178,
+          "rmse_calm": 553.24663,
+          "ratio": 0.6082
+        },
+        "RandomForest": {
+          "rmse_shock": 75.274076,
+          "rmse_calm": 90.284473,
+          "ratio": 0.8337
+        },
+        "LSTM": {
+          "rmse_shock": 180.388165,
+          "rmse_calm": 45.825407,
+          "ratio": 3.9364
+        }
+      }
+    },
+    {
+      "event_id": "svb_collapse_mar23",
+      "target": "BTC",
+      "methods": {
+        "SCM": {
+          "rmse_shock": 6196.141275,
+          "rmse_calm": 1085.011496,
+          "ratio": 5.7107
+        },
+        "DML": {
+          "rmse_shock": 6421.350604,
+          "rmse_calm": 12709.622646,
+          "ratio": 0.5052
+        },
+        "VAR_Granger": {
+          "rmse_shock": 6224.611934,
+          "rmse_calm": 2300.722609,
+          "ratio": 2.7055
+        },
+        "IV_2SLS": {
+          "rmse_shock": 1098.870302,
+          "rmse_calm": 702.162349,
+          "ratio": 1.565
+        },
+        "ARIMA": {
+          "rmse_shock": 5809.146013,
+          "rmse_calm": 2114.31748,
+          "ratio": 2.7475
+        },
+        "Prophet": {
+          "rmse_shock": 6010.97243,
+          "rmse_calm": 12663.787645,
+          "ratio": 0.4747
+        },
+        "RandomForest": {
+          "rmse_shock": 2787.384419,
+          "rmse_calm": 1446.433832,
+          "ratio": 1.9271
+        },
+        "LSTM": {
+          "rmse_shock": 8457.212053,
+          "rmse_calm": 1801.762005,
+          "ratio": 4.6939
+        }
+      }
+    },
+    {
+      "event_id": "svb_collapse_mar23",
+      "target": "ETH",
+      "methods": {
+        "SCM": {
+          "rmse_shock": 313.505703,
+          "rmse_calm": 435.224827,
+          "ratio": 0.7203
+        },
+        "DML": {
+          "rmse_shock": 316071.876631,
+          "rmse_calm": 353.467917,
+          "ratio": 894.2024
+        },
+        "VAR_Granger": {
+          "rmse_shock": 293.562187,
+          "rmse_calm": 675.161096,
+          "ratio": 0.4348
+        },
+        "IV_2SLS": {
+          "rmse_shock": 76.446806,
+          "rmse_calm": 85.62278,
+          "ratio": 0.8928
+        },
+        "ARIMA": {
+          "rmse_shock": 269.948681,
+          "rmse_calm": 1120.598688,
+          "ratio": 0.2409
+        },
+        "Prophet": {
+          "rmse_shock": 633.038864,
+          "rmse_calm": 1432.124802,
+          "ratio": 0.442
+        },
+        "RandomForest": {
+          "rmse_shock": 115.885316,
+          "rmse_calm": 218.576452,
+          "ratio": 0.5302
+        },
+        "LSTM": {
+          "rmse_shock": 442.478165,
+          "rmse_calm": 727.18398,
+          "ratio": 0.6085
+        }
+      }
+    },
+    {
+      "event_id": "btc_halving_may20",
+      "target": "BTC",
+      "methods": {
+        "SCM": {
+          "rmse_shock": 669.875228,
+          "rmse_calm": 2575.525005,
+          "ratio": 0.2601
+        },
+        "DML": {
+          "rmse_shock": 822.370481,
+          "rmse_calm": 2255.812209,
+          "ratio": 0.3646
+        },
+        "VAR_Granger": {
+          "rmse_shock": 2311.865536,
+          "rmse_calm": 1398.271366,
+          "ratio": 1.6534
+        },
+        "IV_2SLS": {
+          "rmse_shock": 350.834042,
+          "rmse_calm": 534.03558,
+          "ratio": 0.6569
+        },
+        "ARIMA": {
+          "rmse_shock": 1067.407395,
+          "rmse_calm": 1662.919546,
+          "ratio": 0.6419
+        },
+        "Prophet": {
+          "rmse_shock": 1824.224903,
+          "rmse_calm": 3835.553512,
+          "ratio": 0.4756
+        },
+        "RandomForest": {
+          "rmse_shock": 877.943186,
+          "rmse_calm": 2571.273163,
+          "ratio": 0.3414
+        },
+        "LSTM": {
+          "rmse_shock": 4386.382671,
+          "rmse_calm": 6574.892596,
+          "ratio": 0.6671
+        }
+      }
+    },
+    {
+      "event_id": "btc_halving_may20",
+      "target": "ETH",
+      "methods": {
+        "SCM": {
+          "rmse_shock": 101.311989,
+          "rmse_calm": 41.620865,
+          "ratio": 2.4342
+        },
+        "DML": {
+          "rmse_shock": 233.192398,
+          "rmse_calm": null,
+          "ratio": null
+        },
+        "VAR_Granger": {
+          "rmse_shock": 138.098845,
+          "rmse_calm": 110.965168,
+          "ratio": 1.2445
+        },
+        "IV_2SLS": {
+          "rmse_shock": 24.998337,
+          "rmse_calm": null,
+          "ratio": null
+        },
+        "ARIMA": {
+          "rmse_shock": 136.80682,
+          "rmse_calm": 85.492016,
+          "ratio": 1.6002
+        },
+        "Prophet": {
+          "rmse_shock": 91.965736,
+          "rmse_calm": 59.377937,
+          "ratio": 1.5488
+        },
+        "RandomForest": {
+          "rmse_shock": 88.072857,
+          "rmse_calm": 35.709075,
+          "ratio": 2.4664
+        },
+        "LSTM": {
+          "rmse_shock": 125.334004,
+          "rmse_calm": 96.661948,
+          "ratio": 1.2966
+        }
+      }
+    },
+    {
+      "event_id": "btc_halving_apr24",
+      "target": "BTC",
+      "methods": {
+        "SCM": {
+          "rmse_shock": 3685.7533,
+          "rmse_calm": 2152.706035,
+          "ratio": 1.7121
+        },
+        "DML": {
+          "rmse_shock": 3773.278792,
+          "rmse_calm": 872.656856,
+          "ratio": 4.3239
+        },
+        "VAR_Granger": {
+          "rmse_shock": 13562.597637,
+          "rmse_calm": 1790.19012,
+          "ratio": 7.5761
+        },
+        "IV_2SLS": {
+          "rmse_shock": 1728.607937,
+          "rmse_calm": 517.963118,
+          "ratio": 3.3373
+        },
+        "ARIMA": {
+          "rmse_shock": 11757.365175,
+          "rmse_calm": 2136.802061,
+          "ratio": 5.5023
+        },
+        "Prophet": {
+          "rmse_shock": 28537.651079,
+          "rmse_calm": 4298.323791,
+          "ratio": 6.6393
+        },
+        "RandomForest": {
+          "rmse_shock": 3432.995924,
+          "rmse_calm": 1642.342147,
+          "ratio": 2.0903
+        },
+        "LSTM": {
+          "rmse_shock": 26154.95072,
+          "rmse_calm": 10074.152907,
+          "ratio": 2.5962
+        }
+      }
+    },
+    {
+      "event_id": "btc_halving_apr24",
+      "target": "ETH",
+      "methods": {
+        "SCM": {
+          "rmse_shock": 386.289078,
+          "rmse_calm": 70.054359,
+          "ratio": 5.5141
+        },
+        "DML": {
+          "rmse_shock": 239.920005,
+          "rmse_calm": 11010.32214,
+          "ratio": 0.0218
+        },
+        "VAR_Granger": {
+          "rmse_shock": 519.91761,
+          "rmse_calm": 78.229545,
+          "ratio": 6.6461
+        },
+        "IV_2SLS": {
+          "rmse_shock": 108.591632,
+          "rmse_calm": 37.036959,
+          "ratio": 2.932
+        },
+        "ARIMA": {
+          "rmse_shock": 410.224806,
+          "rmse_calm": 69.349857,
+          "ratio": 5.9153
+        },
+        "Prophet": {
+          "rmse_shock": 1393.800118,
+          "rmse_calm": 3039.474765,
+          "ratio": 0.4586
+        },
+        "RandomForest": {
+          "rmse_shock": 172.853424,
+          "rmse_calm": 113.210833,
+          "ratio": 1.5268
+        },
+        "LSTM": {
+          "rmse_shock": 655.771599,
+          "rmse_calm": 380.144766,
+          "ratio": 1.7251
+        }
+      }
+    }
+  ]
+}
