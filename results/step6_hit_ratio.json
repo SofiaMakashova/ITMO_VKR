@@ -1,13 +1,13 @@
 {
   "SCM": {
     "method_type": "Causal",
-    "hit_ratio": 0.5,
-    "correct": 12,
+    "hit_ratio": 0.8333,
+    "correct": 20,
     "total": 24,
     "mean_abs_effect": 826.350448,
     "by_shock_type": {
-      "monetary_policy": 0.3333,
-      "geopolitical": 0.5,
+      "monetary_policy": 0.8333,
+      "geopolitical": 1.0,
       "supply_shock": 0.0,
       "liquidity_crisis": 1.0,
       "structural_shift": 0.75
@@ -20,8 +20,8 @@
     "total": 24,
     "mean_abs_effect": 14794.316685,
     "by_shock_type": {
-      "monetary_policy": 0.75,
-      "geopolitical": 0.25,
+      "monetary_policy": 0.5833,
+      "geopolitical": 0.75,
       "supply_shock": 0.0,
       "liquidity_crisis": 1.0,
       "structural_shift": 0.5
@@ -29,12 +29,12 @@
   },
   "VAR_Granger": {
     "method_type": "Causal",
-    "hit_ratio": 0.5833,
-    "correct": 14,
+    "hit_ratio": 0.8333,
+    "correct": 20,
     "total": 24,
     "mean_abs_effect": 1830.379351,
     "by_shock_type": {
-      "monetary_policy": 0.25,
+      "monetary_policy": 0.75,
       "geopolitical": 0.75,
       "supply_shock": 1.0,
       "liquidity_crisis": 1.0,
@@ -43,13 +43,13 @@
   },
   "IV_2SLS": {
     "method_type": "Causal",
-    "hit_ratio": 0.5417,
-    "correct": 13,
+    "hit_ratio": 0.875,
+    "correct": 21,
     "total": 24,
     "mean_abs_effect": 180.61931,
     "by_shock_type": {
-      "monetary_policy": 0.4167,
-      "geopolitical": 0.5,
+      "monetary_policy": 0.9167,
+      "geopolitical": 1.0,
       "supply_shock": 1.0,
       "liquidity_crisis": 1.0,
       "structural_shift": 0.5
@@ -57,12 +57,12 @@
   },
   "ARIMA": {
     "method_type": "Baseline",
-    "hit_ratio": 0.5833,
-    "correct": 14,
+    "hit_ratio": 0.75,
+    "correct": 18,
     "total": 24,
     "mean_abs_effect": 1242.022187,
     "by_shock_type": {
-      "monetary_policy": 0.3333,
+      "monetary_policy": 0.6667,
       "geopolitical": 0.75,
       "supply_shock": 1.0,
       "liquidity_crisis": 1.0,
@@ -71,13 +71,13 @@
   },
   "Prophet": {
     "method_type": "Baseline",
-    "hit_ratio": 0.5,
-    "correct": 12,
+    "hit_ratio": 0.6667,
+    "correct": 16,
     "total": 24,
     "mean_abs_effect": 2423.05407,
     "by_shock_type": {
-      "monetary_policy": 0.3333,
-      "geopolitical": 0.25,
+      "monetary_policy": 0.5,
+      "geopolitical": 0.75,
       "supply_shock": 0.0,
       "liquidity_crisis": 1.0,
       "structural_shift": 1.0
@@ -90,8 +90,8 @@
     "total": 24,
     "mean_abs_effect": 787.293847,
     "by_shock_type": {
-      "monetary_policy": 0.75,
-      "geopolitical": 0.5,
+      "monetary_policy": 0.5833,
+      "geopolitical": 1.0,
       "supply_shock": 1.0,
       "liquidity_crisis": 1.0,
       "structural_shift": 0.5
@@ -99,14 +99,14 @@
   },
   "LSTM": {
     "method_type": "Baseline",
-    "hit_ratio": 0.9167,
-    "correct": 22,
+    "hit_ratio": 0.7083,
+    "correct": 17,
     "total": 24,
-    "mean_abs_effect": 2972.309032,
+    "mean_abs_effect": 2083.466878,
     "by_shock_type": {
-      "monetary_policy": 0.9167,
-      "geopolitical": 1.0,
-      "supply_shock": 0.0,
+      "monetary_policy": 0.5833,
+      "geopolitical": 0.5,
+      "supply_shock": 1.0,
       "liquidity_crisis": 1.0,
       "structural_shift": 1.0
     }

@@ -554,7 +554,7 @@ def run_comparison():
     summary  = build_summary_h1(full_df, metric="RMSE")
     dag_comp = build_dag_comparison(full_df, metric="RMSE")
 
-    full_df.to_csv(RESULTS_DIR  / "full_comparison.csv", index=False)
+    full_df.to_excel(RESULTS_DIR  / "full_comparison.xlsx", index=False)
     summary.to_csv(RESULTS_DIR  / "summary_h1_RMSE.csv")
     dag_comp.to_csv(RESULTS_DIR / "dag_comparison.csv", index=False)
     log.info("  ✓ CSV-таблицы сохранены")
